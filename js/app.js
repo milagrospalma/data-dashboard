@@ -48,7 +48,8 @@ inputStudents.addEventListener('click', function() {
     var div = document.createElement('div');
     div.appendChild(img);
     document.body.appendChild(div);
-    
+    var sections = document.getElementById('sections')
+    document.body.removeChild(sections);
     
     // document.body.appendChild(div);
     // document.body.appendChild(div);
