@@ -60,10 +60,18 @@ window.addEventListener('load',function(){
       var overviewAqp2a = overviewAqp2[i];
       var activeOverviewAqp2a = overviewAqp2a.active
       if (activeOverviewAqp2a == true){
-        console.log(contador++)
+        contador++
       }
     }
-    //for (var i = 0; i < overviewAqp2.length; i++){
+    //creando los elementos
+    var pTrue = document.createElement('p');
+    //añadiendo contenido a los elementos creados
+    pTrue.textContent = 'total de estudiantes presentes' + ':' + ' ' + contador
+    //añadiendo los nodos
+    div2.appendChild(pTrue)
+    //agregando los atributos
+    pTrue.setAttribute('class','overviewTRUE')
+    //for para el % de deserción de estudiantes
   });
   //realizando el evento click para el button estudiantes Arequipa 2016-2
   var students = document.getElementById('students');
