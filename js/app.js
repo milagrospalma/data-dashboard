@@ -141,6 +141,5 @@ window.addEventListener('load',function(){
         divHse4.setAttribute('class','studentsAqp2016HSE')
       }
   })
-
 });
 console.log (data)

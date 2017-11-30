@@ -142,12 +142,15 @@ section{
 
 .overviewTEACHER{
   font-size: 20px;
+  text-align: center;
 }
 
 .overviewJEDI{
-  font-size: 30PX;
+  font-size: 20PX;
+  text-align: center;
 }
 
 .overviewTRUE{
   font-size: 20px;
+  text-align: center;
 }
