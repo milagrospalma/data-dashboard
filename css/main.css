@@ -97,3 +97,20 @@ section{
     left: 70px;
     margin-bottom: 50px;
 }
+/*clases que estan en js*/
+.box-div{
+    height: 150px;
+    width: 350px;
+    background: red;
+    margin-bottom: 20px;
+    position: relative;
+    left: 350px;
+    top: 20px;
+}
+.img-div{
+    position: relative;
+    top: 10px;
+    left: 10px;
+    width: 130px;
+    height: 130px;
+}
