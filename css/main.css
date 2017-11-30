@@ -134,3 +134,16 @@ section{
   justify-content: center;
   text-align: center;
 }
+
+.overviewNPS{
+  font-size: 20px;
+  text-align: center;
+}
+
+.overviewTEACHER{
+  font-size: 20px;
+}
+
+.overviewJEDI{
+  font-size: 30PX;
+}
