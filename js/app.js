@@ -8,7 +8,10 @@ window.addEventListener('load', function() {
   var sectionDefault = document.getElementById('content-default');
   // Cargando data al selector de Sedes
   var headquarters = Object.keys(data);
+  // Creando un Array vacío para almacenar las sedes
   var arrOptionnHeadquarter = [];
+  // Creando un Array vacío para almacenar las generaciones de una sede
+  var arrOptionGeneration = [];
   for (var i = 0; i < headquarters.length ; i++) {
     var option = document.createElement('option');
     if (headquarters[i] === 'AQP') {
@@ -35,36 +38,49 @@ window.addEventListener('load', function() {
   }
   console.log(arrOptionnHeadquarter); // [0, 1, 2, 3]
 
-  // Función para agregar opciones en selector Generación
-  var arrOptionGeneration = [];
-  function addOptions(headquarter) {
-    var objHeadquarters = data[headquarter];
-    var arrGeneration = Object.keys(objHeadquarters);
-    for (var i = 0; i < arrGeneration.length; i++) {
-      var option = document.createElement('option');
-      var textOption = arrGeneration[i];
-      option.textContent = textOption;
-      option.setAttribute('value', textOption);
-      selectGeneration.appendChild(option);
-      arrOptionGeneration.push(i);
-    }
-    console.log(arrOptionGeneration); // Arrary con generaciones de dicha sede: [0, 1]
-  }
   // Evento para cargar selector de Generaciones
   selectHeadquarters.addEventListener('change', function() {
-    switch (true) {
-    case selectHeadquarters.value === 'arequipa':
-      addOptions('AQP');
-      break;
-    case selectHeadquarters.value === 'mexico':
-      addOptions('CDMX');
-      break;
-    case selectHeadquarters.value === 'lima':
-      addOptions('LIM');
-      break;
-    case selectHeadquarters.value === 'chile':
-      addOptions('SCL');
-      break;
+    // Función para agregar opciones en selector Generación
+    function addOptions(headquarter) {
+      var objHeadquarters = data[headquarter];
+      var arrGeneration = Object.keys(objHeadquarters);
+      for (var i = arrGeneration.length - 1; i >= 0 ; i--) {
+        var option = document.createElement('option');
+        var textOption = arrGeneration[i];
+        option.textContent = textOption;
+        option.setAttribute('value', textOption);
+        selectGeneration.appendChild(option);
+        arrOptionGeneration.push(i);
+      }
+      // console.log(arrOptionGeneration); // [1, 0]
+    }
+    // Creando variable que almacena el índice de la opción seleccionada
+    var selectedHeadquarter = selectHeadquarters.selectedIndex;
+    if (selectedHeadquarter != 0) {
+      switch (true) {
+      case selectedHeadquarter === 1:
+        // Desaparece el texto "Generación" del select y muestra una generación
+        selectGeneration.options.length = 0;
+        addOptions('AQP');
+        break;
+      case selectedHeadquarter === 2:
+        selectGeneration.options.length = 0;
+        addOptions('CDMX');
+        break;
+      case selectedHeadquarter === 3:
+        selectGeneration.options.length = 0;
+        addOptions('LIM');
+        break;
+      case selectedHeadquarter === 4:
+        selectGeneration.options.length = 0;
+        addOptions('SCL');
+        break;
+      }
+    } else {
+      // elimino las generaciones del select y muestra el texto "generación"
+      	selectGeneration.options.length = 1;
+      	// Retorna el select con el texto Generación
+      	selectGeneration.options[0].text = 'generación';
     }
   });
 
@@ -217,7 +233,7 @@ window.addEventListener('load', function() {
     //agregando los atributos
     pTrue.setAttribute('class','overviewTRUE')
     //for para el % de deserción de estudiantes
-
+/*
     var keysAqp2 = Object.keys(data['AQP']['2017-1']['ratings']).length;
 var dataAqp2 = data['AQP']['2017-1']['ratings'];
 var contadorAqp2 = 0;
@@ -342,7 +358,7 @@ for (var i = 0;i < keysScl2 ;i++) {
 var p9 = document.createElement('p');
 p9.textContent = 'Porcentaje de satisfacción en Chile 2017-1 es de ' + totalScl2;
 document.body.appendChild(p9);
-
+*/
     });
   });
 });
