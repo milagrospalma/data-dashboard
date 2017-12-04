@@ -1,47 +1,51 @@
 window.addEventListener('load', function() {
   var selectHeadquarters = document.getElementById('headquarters');
   var selectGeneration = document.getElementById('generation');
+  var backgroundDefault = document.getElementById('background-default');
   var overview = document.getElementById('overview');
   var overviewBtn = document.getElementById('overview-btn');
   var students = document.getElementById('students');
   var studentsBtn = document.getElementById('students-btn');
   // Cargando data al selector de Sedes
-  var headquarters = Object.keys(data);
+  var arrHeadquarter = Object.keys(data);
   // Creando un Array vacío para almacenar las sedes
-  var arrOptionnHeadquarter = [];
+  var arrOptionHeadquarter = [];
   // Creando un Array vacío para almacenar las generaciones de una sede
   var arrOptionGeneration = [];
-  for (var i = 0; i < headquarters.length ; i++) {
+
+  for (var i = 0; i < arrHeadquarter.length ; i++) {
     var option = document.createElement('option');
-    if (headquarters[i] === 'AQP') {
+    if (arrHeadquarter[i] === 'AQP') {
       option.textContent = 'Arequipa';
       option.setAttribute('value', 'arequipa');
-      arrOptionnHeadquarter.push(i);
+      arrOptionHeadquarter.push(i);
     }
-    if (headquarters[i] === 'CDMX') {
+    if (arrHeadquarter[i] === 'CDMX') {
       option.textContent = 'México';
       option.setAttribute('value', 'mexico');
-      arrOptionnHeadquarter.push(i);
+      arrOptionHeadquarter.push(i);
     }
-    if (headquarters[i] === 'LIM') {
+    if (arrHeadquarter[i] === 'LIM') {
       option.textContent = 'Lima';
       option.setAttribute('value', 'lima');
-      arrOptionnHeadquarter.push(i);
+      arrOptionHeadquarter.push(i);
     }
-    if (headquarters[i] === 'SCL') {
+    if (arrHeadquarter[i] === 'SCL') {
       option.textContent = 'Chile';
       option.setAttribute('value', 'chile');
-      arrOptionnHeadquarter.push(i);
+      arrOptionHeadquarter.push(i);
     }
     selectHeadquarters.appendChild(option);
   }
-  console.log(arrOptionnHeadquarter); // [0, 1, 2, 3]
+  console.log(arrOptionHeadquarter); // [0, 1, 2, 3]
+  // Eliminar después de prueba
+  var greet = document.createElement('p');
 
   // Evento para cargar selector de Generaciones
   selectHeadquarters.addEventListener('change', function() {
     // Función para agregar opciones en selector Generación
-    function addOptions(headquarter) {
-      var objHeadquarters = data[headquarter];
+    function addOptions(arrHeadquarter) {
+      var objHeadquarters = data[arrHeadquarter];
       var arrGeneration = Object.keys(objHeadquarters);
       for (var i = arrGeneration.length - 1; i >= 0 ; i--) {
         var option = document.createElement('option');
@@ -53,9 +57,16 @@ window.addEventListener('load', function() {
       }
       // console.log(arrOptionGeneration); // [1, 0]
     }
+    // Creando función para agregar overview por defecto
+    function addOverviewDefault() {
+
+    }
     // Creando variable que almacena el índice de la opción seleccionada
     var selectedHeadquarter = selectHeadquarters.selectedIndex;
     if (selectedHeadquarter != 0) {
+      backgroundDefault.style.display = 'none';
+      overviewBtn.removeAttribute('disabled');
+      studentsBtn.removeAttribute('disabled');
       switch (true) {
       case selectedHeadquarter === 1:
         // Desaparece el texto "Generación" del select y muestra una generación
@@ -77,9 +88,10 @@ window.addEventListener('load', function() {
         addOptions('SCL');
         break;
       }
-      overviewBtn.removeAttribute('disabled');
-      studentsBtn.removeAttribute('disabled');
     } else {
+      students.style.display = 'none';
+      overview.style.display = 'none';
+      backgroundDefault.style.display = 'block';
       // elimino las generaciones del select y muestra el texto "generación"
       selectGeneration.options.length = 1;
       // Retorna el select con el texto Generación
@@ -88,35 +100,34 @@ window.addEventListener('load', function() {
       studentsBtn.setAttribute('disabled', true);
     }
   });
-  var greet = document.createElement('p');
-  greet.textContent = 'Aquí debe mostrarse una imagen de fondo';
-  overview.appendChild(greet);
 
   // Evento para cargar data al seleccionar una generación
   selectGeneration.addEventListener('change', function() {
     greet.textContent = 'Aquí debe mostrarse la info general porque se seleccionó una generación';
     overview.appendChild(greet);
+
     // for (var i = 0; i < arrOptionGeneration.length; i++) {
     //   var selectedGeneration = arrOptionGeneration[i];
     // }
     // console.log('Index de la opción: ' + selectedGeneration);
   });
-
   // Evento para el boton general
   overviewBtn.addEventListener('click', function() {
     greet.textContent = 'Esta es la vista general';
     overview.appendChild(greet);
-
-    students.style.display = 'none';
     overview.style.display = 'block';
+    // backgroundDefault.style.display = 'none';
+    // students.style.display = 'none';
+    // overview.style.display = 'block';
   });
   // Evento click para el botón estudiantes
   studentsBtn.addEventListener('click', function() {
     greet.textContent = 'Esta es la vista estudiantes';
     students.appendChild(greet);
-
-    overview.style.display = 'none';
     students.style.display = 'block';
+    // // backgroundDefault.style.display = 'none';
+    // overview.style.display = 'none';
+    // students.style.display = 'block';
   });
 });
 // Puedes hacer uso de la base de datos a través de la variable `data`
