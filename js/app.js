@@ -8,7 +8,9 @@ window.addEventListener('load', function() {
   var studentsBtn = document.getElementById('students-btn');
   var enrollment = document.getElementById('enrollment');
 
-  // Cargando data al selector de Sedes
+  // Oculta contenido de overview
+  overview.style.display = 'none';
+  // Carga data al selector de Sedes
   var arrHeadquarter = Object.keys(data);
   // Creando un Array vacío para almacenar las sedes
   var arrOptionHeadquarter = [];
@@ -43,6 +45,8 @@ window.addEventListener('load', function() {
   // Eliminar después de prueba
   var greet = document.createElement('p');
 
+
+
   // Evento para cargar selector de Generaciones
   selectHeadquarters.addEventListener('change', function(event) {
     // Función para agregar opciones en selector Generación
@@ -60,11 +64,12 @@ window.addEventListener('load', function() {
       // console.log(arrOptionGeneration); // [1, 0]
     }
 
-    // overview.style.display = 'none';
+
     // Creando variable que almacena el índice de la opción seleccionada
     var selectedHeadquarter = selectHeadquarters.selectedIndex;
     if (selectedHeadquarter != 0) {
       backgroundDefault.style.display = 'none';
+      overview.style.display = 'block';
       overviewBtn.removeAttribute('disabled');
       studentsBtn.removeAttribute('disabled');
       //
@@ -204,9 +209,9 @@ window.addEventListener('load', function() {
       percentageAchievement.textContent = studentAchievement;
       var totalAlumns = document.getElementById('total-alumns');
       totalAlumns.textContent = arrStudents.length;
-      // var countSkills = document.getElementById('countSkills');
-      // countSkills.textContent = '';
-      // countSkills.textContent = contTech;
+      var countSkills = document.getElementById('countSkills');
+      countSkills.textContent = '';
+      countSkills.textContent = contTech;
       var totalStudents = document.getElementById('totalStudentsTech');
       totalStudents.textContent = (arrStudents.length - contInactive);
       var percentageStudentsPass = document.getElementById('percentageStudentsTech');
