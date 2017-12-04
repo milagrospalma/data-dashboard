@@ -81,65 +81,48 @@ window.addEventListener('load',function(){
     var div = document.createElement('div');
     students.appendChild(div);
     //jalamos las estudiantes de Arequipa 2016-2, mediante la data
-    var studentsAqp = data.AQP['2016-2'].students
+    for(var elemento1 in data){
+          var obj =  data[elemento1]
+          var arr = Object.keys(obj);
+          var studentsAqp = data[elemento1][arr[0]].students;
+          console.log(probando2);
+
     for (var i = 0; i < studentsAqp.length; i++){
       var studentsAqp2016a = studentsAqp[i];
+      console.log (studentsAqp2016a)
       var photoStudentsAqp2016a = studentsAqp2016a.photo;
       var nameStudentsAqp2016a = studentsAqp2016a.name;
-      var sprintsStudentsAqp2016atech1 = studentsAqp2016a.sprints[0].score.tech;
-      var sprintsStudentsAqp2016atech2 = studentsAqp2016a.sprints[1].score.tech;
-      var sprintsStudentsAqp2016atech3 = studentsAqp2016a.sprints[2].score.tech;
-      var sprintsStudentsAqp2016atech4 = studentsAqp2016a.sprints[3].score.tech;
-      var sprintsStudentsAqp2016ahse1 = studentsAqp2016a.sprints[0].score.hse;
-      var sprintsStudentsAqp2016ahse2 = studentsAqp2016a.sprints[1].score.hse;
-      var sprintsStudentsAqp2016ahse3 = studentsAqp2016a.sprints[2].score.hse;
-      var sprintsStudentsAqp2016ahse4 = studentsAqp2016a.sprints[3].score.hse;
+      var sprintsStudents = studentsAqp2016a.sprints;
+      var img = document.createElement('img');
+      var pName = document.createElement('p');
+      div.appendChild(pName)
+      div.appendChild(img)
+      for (var j = 0; j < sprintsStudents.length; j++) {
+      var sprints = sprintsStudents[j];
+      var sprintsTech = sprints.score.tech;
+      var sprintsHse = sprints.score.hse;
+      div.setAttribute('class', 'students')
+      img.setAttribute('src',photoStudentsAqp2016a)
+      img.setAttribute('class','photoStudentsAqp2016a')
+      pName.setAttribute('class','studentsAqp2016a')
+      console.log (sprintsTech);
+      console.log (sprintsHse);
       //creando los elementos
-        var img = document.createElement('img');
-        var pName = document.createElement('p');
         var divTech1 = document.createElement('div');
-        var divTech2 = document.createElement('div');
-        var divTech3 = document.createElement('div');
-        var divTech4 = document.createElement('div');
         var divHse1 = document.createElement('div');
-        var divHse2 = document.createElement('div');
-        var divHse3 = document.createElement('div');
-        var divHse4 = document.createElement('div');
         //añadiendo el contenido a los elementos creados
-        divTech1.innerHTML ='Puntaje TECH 1° sprint' + ':' + ' ' + sprintsStudentsAqp2016atech1;
-        divTech2.innerHTML ='Puntaje TECH 2° sprint' + ':' + ' ' + sprintsStudentsAqp2016atech2;
-        divTech3.innerHTML ='Puntaje TECH 3° sprint' + ':' + ' ' + sprintsStudentsAqp2016atech3;
-        divTech4.innerHTML ='Puntaje TECH 4° sprint' + ':' + ' ' + sprintsStudentsAqp2016atech4;
-        divHse1.innerHTML ='Puntaje HSE 1° sprint' + ':' + ' ' + sprintsStudentsAqp2016ahse1;
-        divHse2.innerHTML ='Puntaje HSE 2° sprint' + ':' + ' ' + sprintsStudentsAqp2016ahse2;
-        divHse3.innerHTML ='Puntaje HSE 3° sprint' + ':' + ' ' + sprintsStudentsAqp2016ahse3;
-        divHse4.innerHTML ='Puntaje HSE 4° sprint' + ':' + ' ' + sprintsStudentsAqp2016ahse4;
+        divTech1.innerHTML ='Puntaje TECH sprint' + ' '  + ':' + ' ' + sprintsTech;
+        divHse1.innerHTML ='Puntaje HSE sprint' + ' '  + ':' + ' ' + sprintsHse;
         pName.textContent = nameStudentsAqp2016a;
         //añadiendo los nodos
-        div.appendChild(pName)
-        div.appendChild(img)
         div.appendChild(divTech1)
-        div.appendChild(divTech2)
-        div.appendChild(divTech3)
-        div.appendChild(divTech4)
         div.appendChild(divHse1)
-        div.appendChild(divHse2)
-        div.appendChild(divHse3)
-        div.appendChild(divHse4)
         //agregando los atributos
-        div.setAttribute('class', 'students')
-        img.setAttribute('src',photoStudentsAqp2016a)
-        img.setAttribute('class','photoStudentsAqp2016a')
-        pName.setAttribute('class','studentsAqp2016a')
         divTech1.setAttribute('class','studentsAqp2016TECH')
-        divTech2.setAttribute('class','studentsAqp2016TECH')
-        divTech3.setAttribute('class','studentsAqp2016TECH')
-        divTech4.setAttribute('class','studentsAqp2016TECH')
         divHse1.setAttribute('class','studentsAqp2016HSE')
-        divHse2.setAttribute('class','studentsAqp2016HSE')
-        divHse3.setAttribute('class','studentsAqp2016HSE')
-        divHse4.setAttribute('class','studentsAqp2016HSE')
       }
+      }
+    }
   })
 });
 console.log (data)
