@@ -6,7 +6,6 @@ window.addEventListener('load', function() {
   var overviewBtn = document.getElementById('overview-btn');
   var students = document.getElementById('students');
   var studentsBtn = document.getElementById('students-btn');
-  var enrollment = document.getElementById('enrollment');
 
   // Oculta contenido de overview
   overview.style.display = 'none';
@@ -45,8 +44,6 @@ window.addEventListener('load', function() {
   // Eliminar después de prueba
   var greet = document.createElement('p');
 
-
-
   // Evento para cargar selector de Generaciones
   selectHeadquarters.addEventListener('change', function(event) {
     // Función para agregar opciones en selector Generación
@@ -63,7 +60,6 @@ window.addEventListener('load', function() {
       }
       // console.log(arrOptionGeneration); // [1, 0]
     }
-
 
     // Creando variable que almacena el índice de la opción seleccionada
     var selectedHeadquarter = selectHeadquarters.selectedIndex;
@@ -197,12 +193,22 @@ window.addEventListener('load', function() {
       // ya no se multiplicó por 100, ya que el 100% es equivalente a la unidad
       var resultNps = resultPromoters - resultDetractors;
 
-      // enrollment.textContent = '';
+      // Parte Student satisfaction (para últimos gráficos)
+      var excedExpectationStudents = 0;
+      var averageTeacher = 0;
+      var excedExpectationJedi = 0;
+      for (var z = 0; z < arrRatings.length; z++) {
+        excedExpectationStudents += arrRatings[z].student.supera;
+        averageTeacher += arrRatings[z].teacher;
+        excedExpectationJedi += arrRatings[z].jedi;
+      }
+      var averageTeacherResult = (averageTeacher / arrRatings.length).toFixed(1);
+      var excedExpectationJediRating = (excedExpectationJedi / arrRatings.length).toFixed(1);
+
+      var enrollment = document.getElementById('enrollment');
       enrollment.textContent = arrStudents.length;
       var retiredAlumn = document.getElementById('retiredAlumn');
-      // retiredAlumn.textContent = '';
       retiredAlumn.textContent = retired;
-
       var countAchievement = document.getElementById('countAchievement');
       countAchievement.textContent = contGoal;
       var percentageAchievement = document.getElementById('percentageAchievement');
@@ -230,35 +236,42 @@ window.addEventListener('load', function() {
       detractorScore.textContent = resultDetractors;
       var averageNps = document.getElementById('average-nps');
       averageNps.textContent = resultNps;
-
+      var jedi = document.getElementById('jedi')
+      jedi.textContent = excedExpectationJediRating;
+      var teacher = document.getElementById('teacher');
+      teacher.textContent = averageTeacherResult;
+      var expectationStudents = document.getElementById('expectationStudents');
+      expectationStudents.textContent = excedExpectationStudents;
     }
   });
 
 
   // Evento para cargar data al seleccionar una generación
   selectGeneration.addEventListener('change', function() {
-    greet.textContent = 'Aquí debe mostrarse la info general porque se seleccionó una generación';
+    greet.textContent = 'Seleccionaste una generacion';
     overview.appendChild(greet);
 
     // for (var i = 0; i < arrOptionGeneration.length; i++) {
     //   var selectedGeneration = arrOptionGeneration[i];
     // }
-     console.log('value de la opción: ' + selectGeneration.value);
+    // console.log('value de la opción: ' + selectGeneration.value);
   });
   // Evento para el boton general
   overviewBtn.addEventListener('click', function() {
-    greet.textContent = 'Esta es la vista general';
-    overview.appendChild(greet);
+    students.style.display = 'none';
     overview.style.display = 'block';
+    greet.textContent = 'Seleccionaste overview';
+    overview.appendChild(greet);
     // backgroundDefault.style.display = 'none';
     // students.style.display = 'none';
     // overview.style.display = 'block';
   });
   // Evento click para el botón estudiantes
   studentsBtn.addEventListener('click', function() {
-    greet.textContent = 'Esta es la vista estudiantes';
-    students.appendChild(greet);
+    overview.style.display = 'block';
     students.style.display = 'block';
+    greet.textContent = 'Seleccionaste student';
+    students.appendChild(greet);
     // // backgroundDefault.style.display = 'none';
     // overview.style.display = 'none';
     // students.style.display = 'block';
