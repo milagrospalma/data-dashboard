@@ -60,6 +60,7 @@ window.addEventListener('load', function() {
       // console.log(arrOptionGeneration); // [1, 0]
     }
 
+    // overview.style.display = 'none';
     // Creando variable que almacena el índice de la opción seleccionada
     var selectedHeadquarter = selectHeadquarters.selectedIndex;
     if (selectedHeadquarter != 0) {
@@ -168,13 +169,13 @@ window.addEventListener('load', function() {
       var neoTech = ((contTech / (arrStudents.length - contInactive)) * 100).toFixed(1);
       var neoSkills = ((contHse / (arrStudents.length - contInactive)) * 100).toFixed(1);
 
-      // NPS
+      // Achievement
       for (var i = 0; i < arrNameGeneration.length; i++) {
         if (arrNameGeneration[i] === lastGeneration) {
           var arrRatings = data[nameHeadquarter][lastGeneration].ratings;
         }
       }
-      console.log(arrRatings)//obtengo a todos los ratings de la generación elegida
+      // console.log(arrRatings)//obtengo a todos los ratings de la generación elegida
 
       var detractors = 0;
       var promoters = 0;
@@ -197,11 +198,35 @@ window.addEventListener('load', function() {
       // retiredAlumn.textContent = '';
       retiredAlumn.textContent = retired;
 
-      // greet.textContent = 'Muestra vista general de ultima gen';
-      // overview.appendChild(greet);
+      var countAchievement = document.getElementById('countAchievement');
+      countAchievement.textContent = contGoal;
+      var percentageAchievement = document.getElementById('percentageAchievement');
+      percentageAchievement.textContent = studentAchievement;
+      var totalAlumns = document.getElementById('total-alumns');
+      totalAlumns.textContent = arrStudents.length;
+      // var countSkills = document.getElementById('countSkills');
+      // countSkills.textContent = '';
+      // countSkills.textContent = contTech;
+      var totalStudents = document.getElementById('totalStudentsTech');
+      totalStudents.textContent = (arrStudents.length - contInactive);
+      var percentageStudentsPass = document.getElementById('percentageStudentsTech');
+      percentageStudentsPass.textContent = neoTech;
+      var countHse = document.getElementById('countHse');
+      countHse.textContent = contHse;
+      var totalStudentsHse = document.getElementById('totalStudentsHse');
+      totalStudentsHse.textContent = (arrStudents.length - contInactive);
+      var percentageStudentsHse = document.getElementById('percentageStudentsHse');
+      percentageStudentsHse.textContent = neoSkills;
+      var promoterScore = document.getElementById('promoter-score');
+      promoterScore.textContent = resultPromoters;
+      var passiveScore = document.getElementById('passive-score');
+      passiveScore.textContent = resultPasive;
+      var detractorScore = document.getElementById('detractor-score');
+      detractorScore.textContent = resultDetractors;
+      var averageNps = document.getElementById('average-nps');
+      averageNps.textContent = resultNps;
 
     }
-
   });
 
 
