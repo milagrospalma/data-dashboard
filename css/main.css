@@ -47,6 +47,26 @@
   width: 100%;
 }
 
+/* cajas superiores */
+.boxes-top{
+    width:28%;
+    height:22.5em;
+    float:left;
+    padding:1.3em;
+    background-color:#fff;
+    margin: 1em;
+}
+
+.boxes-top-content{
+    background-color: #f7f7f7;
+    width:8.3em;
+    height:4em;
+    padding:0.6em;
+    text-align:center;
+    float:left;
+    margin:1.5em 0.3em;
+}
+
 /*María Ruiz*/
 .students{
   border: 5px solid red;
