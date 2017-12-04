@@ -85,7 +85,7 @@ window.addEventListener('load',function(){
           var obj =  data[elemento1]
           var arr = Object.keys(obj);
           var studentsAqp = data[elemento1][arr[0]].students;
-          console.log(probando2);
+          console.log(studentsAqp);
 
     for (var i = 0; i < studentsAqp.length; i++){
       var studentsAqp2016a = studentsAqp[i];
@@ -125,4 +125,5 @@ window.addEventListener('load',function(){
     }
   })
 });
+
 console.log (data)
